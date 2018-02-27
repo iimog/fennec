@@ -18,22 +18,22 @@ import unittest, time, re, os
 class Test(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Firefox()
-        self.driver.implicitly_wait(30)
-        self.base_url = "http://localhost:3141/app.php"
+        self.driver.implicitly_wait(10)
+        self.base_url = "http://localhost:3141"
         self.verificationErrors = []
         self.accept_next_alert = True
 
     def test_(self):
         driver = self.driver
-        driver.get(self.base_url + "/1.0/startpage")
+        driver.get(self.base_url + "/default_data/startpage")
         driver.get_screenshot_as_file("screenshots/startpage.png")
         driver.find_element_by_link_text("Home").click()
-        driver.get(self.base_url + "/login-demo")
+        driver.get(self.base_url + "/login")
         driver.find_element_by_id("username").clear()
         driver.find_element_by_id("username").send_keys("demo")
         driver.find_element_by_id("password").clear()
         driver.find_element_by_id("password").send_keys("demo")
-        driver.find_element_by_css_selector("button[type=\"submit\"]").click()
+        driver.find_element_by_css_selector("input[type=\"submit\"]").click()
         driver.find_element_by_link_text("Projects").click()
         driver.find_element_by_xpath("//input[@type='search']").clear()
         driver.get_screenshot_as_file("screenshots/projects.png")
@@ -45,17 +45,17 @@ class Test(unittest.TestCase):
         driver.find_element_by_xpath("//*[contains(text(),'1002')]")
         time.sleep(1)
         driver.get_screenshot_as_file("screenshots/project_details.png")
-        driver.find_element_by_link_text("Mapping").click()
-        driver.find_element_by_xpath("(//button[@type='button'])[8]").click()
-        driver.find_element_by_link_text("OTUs").click()
-        driver.find_element_by_xpath("(//button[@type='button'])[10]").click()
-        driver.find_element_by_xpath("//div[@id='mapping']/div/div[2]/div[2]/div[3]/div/ul/li[3]/a/span").click()
-        Select(driver.find_element_by_id("mapping-metadata-observation-select")).select_by_visible_text("ncbi_taxid")
-        driver.find_element_by_xpath("(//button[@type='button'])[11]").click()
-        driver.find_element_by_link_text("NCBI taxid").click()
-        driver.find_element_by_id("mapping-action-button").click()
-        time.sleep(1)
-        driver.get_screenshot_as_file("screenshots/project_mapping.png")
+#        driver.find_element_by_link_text("Mapping").click()
+#        driver.find_element_by_xpath("(//button[@type='button'])[8]").click()
+#        driver.find_element_by_link_text("OTUs").click()
+#        driver.find_element_by_xpath("(//button[@type='button'])[10]").click()
+#        driver.find_element_by_xpath("//div[@id='mapping']/div/div[2]/div[2]/div[3]/div/ul/li[3]/a/span").click()
+#        Select(driver.find_element_by_id("mapping-metadata-observation-select")).select_by_visible_text("ncbi_taxid")
+#        driver.find_element_by_xpath("(//button[@type='button'])[11]").click()
+#        driver.find_element_by_link_text("NCBI taxid").click()
+#        driver.find_element_by_id("mapping-action-button").click()
+#        time.sleep(1)
+#        driver.get_screenshot_as_file("screenshots/project_mapping.png")
         driver.find_element_by_xpath("(//a[contains(text(),'Traits')])[2]").click()
         time.sleep(1)
         driver.get_screenshot_as_file("screenshots/project_traits.png")
